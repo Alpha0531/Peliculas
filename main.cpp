@@ -10,7 +10,7 @@ using namespace std;
 int main()
 {
     Lector l1;
-    Video vid[20];
+    
     Pelicula pel[20];
     Serie ser[20];
 
@@ -106,6 +106,7 @@ cin>>opcion;
                 nums=i;
             }
         }
+        ser[nums].mostrarId();
         cout<<"Los episodios con esa calificacion son: "<<endl;
         for(int j=0; j<ser[nums].getNumCap();j++)
         {
@@ -118,7 +119,14 @@ cin>>opcion;
         if(comp == 0){
             cout<<"No hay episodios con esa calificacion, en esta serie"<<endl;
         }
-
+        float vari = 0;
+        Episodio re("","",0,0,0);
+        for (int h =0;h<ser[nums].getNumCap();h++)
+        {
+            re = re + ser[nums].listE[h];
+        }
+        vari=re.getCalificacion()/ser[nums].getNumCap();
+        cout<<"El promedio de calificacion para esta serie es: "<<vari<<endl;
         
         
 
@@ -132,7 +140,8 @@ cin>>opcion;
 
         for(int i=0; i<conP; i++){
             if (getCal ==pel[i].getCalificacion()){
-            cout << pel[i].getNombre() << endl;
+            cout << pel[i];
+            pel[i].mostrarId();
             
             cp = cp+1;
             }

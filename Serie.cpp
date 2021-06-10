@@ -34,3 +34,8 @@ void Serie::setIdS(int id){
 void Serie::setEp(Episodio ep, int h){
         listE[h]=ep;
 }
+
+//Virtual
+void Serie::mostrarId(){
+    cout<<"El id de la serie es: "<<getIdS()<<endl;
+}

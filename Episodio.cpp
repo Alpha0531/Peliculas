@@ -5,6 +5,7 @@ Episodio::Episodio(){
 }
 Episodio::Episodio(string nombre, string genero, int duracion, int calificacion, int ide):Video(nombre, genero, duracion, calificacion){
     this -> ide = ide;
+    this->calificacion=calificacion;
 }
 
 //Getters
