@@ -17,3 +17,5 @@ int Pelicula::getIdP(){
 void Pelicula::setIdP(int id){
     this -> id = id;
 }
+
+

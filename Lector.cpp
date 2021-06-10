@@ -12,3 +12,7 @@ void Lector::LeerDatos(string nombreFile, int NumVid){
     }
 
 }
+void Lector::CambiarDatos(int fila, int columna, int calificacion)
+{
+    notebook[fila][columna] = calificacion;
+}

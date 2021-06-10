@@ -4,13 +4,12 @@
 Serie::Serie(){
     int id = 0;
     string Nombre = "";
+    int numCap=0;
 }
-Serie::Serie(int id,string Nombre,Temporada listat[]){
+Serie::Serie(int id,string Nombre, string genero, int numCap){
     this->id = id;
     this->Nombre=Nombre;
-    for (int i=0; i<2; i++){
-        this->listat[i]=listat[i];
-    }
+    this->numCap=numCap;
     
 }
 
@@ -21,14 +20,17 @@ int Serie::getIdS(){
 string Serie::getNombre(){
     return Nombre;
 }
-
+int Serie::getNumCap(){
+    return numCap;
+}
+string Serie::getGenero(){
+    return genero;
+}
 //Setters
 void Serie::setIdS(int id){
     this -> id = id;
 }
-void Serie::getInfoT(){
-    for (int i=0; i<2; i++){
-        cout << "Temporada" << i <<endl;
-        listat[i].getInfo();
-    }
+
+void Serie::setEp(Episodio ep, int h){
+        listE[h]=ep;
 }
