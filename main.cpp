@@ -15,7 +15,7 @@ int main()
     Serie ser[20];
 
     int opcion=1,conV=0,conP=0,conS=0, conE=0;
-
+    string nombreFile;
 
 while(opcion != 0)
 {
@@ -31,7 +31,7 @@ cin>>opcion;
 //Secuencias de IF
     if (opcion == 1)
     {
-        string nombreFile;
+        
         cout<<"Ingrese el nombre del documento .txt "<<endl;
         cin>>nombreFile;
         l1.LeerDatos(nombreFile,30);
@@ -61,8 +61,9 @@ cin>>opcion;
                 break;
              
             }
+            
         
-    }
+        }
     }
     else if (opcion == 2)
     {
@@ -143,7 +144,31 @@ cin>>opcion;
     }
     else if (opcion == 5)
     {
-    l1.notebook[0][2]="Tu_Gfa";
+    string nvideo;
+    string califvid;
+    cout<<"Ingrese el nombre del video a calificar"<<endl;
+    cin>>nvideo;
+    cout<<"Ingrese la calificacion"<<endl;
+    cin>>califvid;
+    for(int i=0;i<24;i++)
+    {
+        for(int j=0;j<8;j++)
+        {
+            if(nvideo == l1.notebook[i][j])
+            {
+                if("Capitulo"==l1.notebook[i][0])
+                {
+                l1.notebook[i][4] = califvid;
+                }
+                if("Pelicula"==l1.notebook[i][0])
+                {
+                l1.notebook[i][5] = califvid;
+                }
+            }
+        }
+        
+    }
+    //Sobreescribir archivo
     ofstream file; 
     file.open("Programa.txt", ios::out); 
     if(file.fail()){
@@ -158,8 +183,36 @@ cin>>opcion;
         }
         file<<endl;
     }
-     
-    //file.close(); 
+    
+    int opcion=1,conV=0,conP=0,conS=0, conE=0;
+    l1.LeerDatos(nombreFile,30);
+    for (int i = 0; i<17;i++)
+        {
+            
+            if (l1.notebook[i][0]=="Pelicula")
+            {
+                pel[conP] =  Pelicula(l1.notebook[i][2],l1.notebook[i][3],stoi(l1.notebook[i][4]),stoi(l1.notebook[i][5]),stoi(l1.notebook[i][1]));
+                conP+=1;
+            }
+            else if (l1.notebook[i][0]=="Serie")
+            {
+                ser[conS]= Serie(stoi(l1.notebook[i][1]),l1.notebook[i][2],l1.notebook[i][3],stoi(l1.notebook[i][4]));
+                conS+=1;
+                conE =0;
+                
+            }
+            else if (l1.notebook[i][0]=="Capitulo"){
+                Episodio eps = Episodio(l1.notebook[i][1],l1.notebook[i][2],stoi(l1.notebook[i][3]),stoi(l1.notebook[i][4]),stoi(l1.notebook[i][5]));
+                
+                ser[conS-1].setEp(eps,conE);
+                conE+=1;
+            }
+
+            else {
+                break;
+             }
+    
+        }
     }
     else if (opcion == 0)
     {
