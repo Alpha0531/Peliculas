@@ -5,16 +5,17 @@
 
 #include "Pelicula.h"
 #include "Lector.h"
+
 using namespace std;
 
 int main()
 {
     Lector l1;
-    
+    int numvideos=35;
     Pelicula pel[20];
     Serie ser[20];
 
-    int opcion=1,conV=0,conP=0,conS=0, conE=0;
+    int opcion=1,opcion2=0,conV=0,conP=0,conS=0, conE=0;
     string nombreFile;
 
 while(opcion != 0)
@@ -34,8 +35,8 @@ cin>>opcion;
         
         cout<<"Ingrese el nombre del documento .txt "<<endl;
         cin>>nombreFile;
-        l1.LeerDatos(nombreFile,30);
-        for (int i = 0; i<17;i++)
+        l1.LeerDatos(nombreFile,numvideos);
+        for (int i = 0; i<numvideos;i++)
         {
             
             if (l1.notebook[i][0]=="Pelicula")
@@ -67,6 +68,11 @@ cin>>opcion;
     }
     else if (opcion == 2)
     {
+        cout<<"Busqueda por Genero = 1"<<endl;
+        cout<<"Busqueda por calificacion = 2"<<endl;
+        cin>>opcion2;
+        //Busqueda por calificación;
+        if (opcion2 == 2){
         int cp=0;
         int getCal=0;
         cout << "Ingrese calificacion a buscar" << endl;
@@ -90,7 +96,36 @@ cin>>opcion;
         if(cp == 0){
             cout<<"No hay videos con esta calificacion"<<endl;
         }
+        }
+        //Busqueda por género
+        else if (opcion2 == 1)
+        {
+        int cp=0;
+        string getCal="";
+        cout << "Ingrese el genero a buscar" << endl;
+        cin >> getCal;
+        for(int i=0;i<conS;i++){
+        for(int j=0; j<ser[i].getNumCap();j++)
+        {
+            if(getCal == ser[i].listE[j].getGenero()){
+                cout<<ser[i].listE[j].getNombre()<<endl;
+               cp = cp+1;
+            }   
+        }
+        }
+        for(int i=0; i<conP; i++){
+            if (getCal ==pel[i].getGenero()){
+            cout << pel[i].getNombre() << endl;
+            
+            cp = cp+1;
+            }
+        }
+        if(cp == 0){
+            cout<<"No hay videos con esta calificacion"<<endl;
+        }
+        }
     }
+    //Opcion 3
     else if (opcion == 3)
     {
         int comp=0;
@@ -159,7 +194,7 @@ cin>>opcion;
     cin>>nvideo;
     cout<<"Ingrese la calificacion"<<endl;
     cin>>califvid;
-    for(int i=0;i<24;i++)
+    for(int i=0;i<numvideos;i++)
     {
         for(int j=0;j<8;j++)
         {
@@ -184,7 +219,7 @@ cin>>opcion;
         cout << "No se pudo leer" << endl; 
         exit(1);
     } 
-    for(int i=0;i<24;i++)
+    for(int i=0;i<numvideos;i++)
     {
         for(int j=0;j<8;j++)
         {
@@ -195,7 +230,7 @@ cin>>opcion;
     
     int opcion=1,conV=0,conP=0,conS=0, conE=0;
     l1.LeerDatos(nombreFile,30);
-    for (int i = 0; i<17;i++)
+    for (int i = 0; i<numvideos;i++)
         {
             
             if (l1.notebook[i][0]=="Pelicula")
